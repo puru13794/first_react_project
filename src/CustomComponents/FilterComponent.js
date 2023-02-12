@@ -3,7 +3,6 @@ import React from 'react';
 import './FilterComponent.css';
 
 const FIlterComponent = (props) => {
-    // [option, SetOption] = useState('')
     const optionHandler = (e) => {
         props.onYearchange(e.target.value);
         // console.log(e.target.value)

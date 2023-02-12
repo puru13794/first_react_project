@@ -5,7 +5,8 @@ import Card from './Card'
 
 
 function FirstComponent(props){
-  const [title, SetTitle] = useState(props.title);
+  const title = props.title
+  // const [title, SetTitle] = useState(props.title);
     return (<Card className='expense-item'>
             <DateComponent date={props.date}/>
             <div className='expense-item__description'>
