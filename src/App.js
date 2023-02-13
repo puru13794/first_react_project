@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import FirstComponent from "./CustomComponents/FirstComponent.js";
 import './App.css'
 import Card from './CustomComponents/Card.js'
 import BillForm from './CustomComponents/NewBill/BillForm.js';
 import FilterComponent from './CustomComponents/FilterComponent.js'
+import CustomListing from './CustomComponents/CustomListing.js'
 const dummy = [
   {
     id: 'e1',
@@ -26,7 +26,7 @@ const dummy = [
   },
 ];
 const App = () => {
-  const[year, SetYear] = useState('2019')
+  const[year, SetYear] = useState('2021')
   const[expenses, SetExpenses] = useState(dummy)
 
   const finalprops = (props) => {
@@ -39,12 +39,18 @@ const App = () => {
     // console.log(yearprops)
     SetYear(yearprops);
   }
+
+  const FilterHandler = expenses.filter(a => {
+    return a.date.getFullYear().toString() === year; 
+  });
+  
   return (<div>
-    
     <BillForm newbillform={finalprops}/>
     <Card className="expenses">
       <FilterComponent selected={year} onYearchange={YearHandler}/>
-      {expenses.map(expense => <FirstComponent title= {expense.title} amount={expense.amount} date={expense.date} />)}
+      <li>
+      <CustomListing items={FilterHandler} />
+      </li>
     </Card>
     </div>
   );
