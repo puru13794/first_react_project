@@ -28,6 +28,7 @@ const dummy = [
 const App = () => {
   const[year, SetYear] = useState('2021')
   const[expenses, SetExpenses] = useState(dummy)
+  const[variable, SetVariable] = useState(false);
 
   const finalprops = (props) => {
     // console.log(props);
@@ -43,9 +44,14 @@ const App = () => {
   const FilterHandler = expenses.filter(a => {
     return a.date.getFullYear().toString() === year; 
   });
+
+  const ShowForm = () => {
+    SetVariable(true)
+  }
   
-  return (<div>
-    <BillForm newbillform={finalprops}/>
+  return (<div className="new-expenses">
+    {variable && <BillForm newbillform={finalprops}/>}
+    {!variable  && <button onClick={ShowForm}>ADD A BILL</button>}
     <Card className="expenses">
       <FilterComponent selected={year} onYearchange={YearHandler}/>
       <li>
